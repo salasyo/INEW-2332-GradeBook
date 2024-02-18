@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Repository for INEW-2332 GradeBook Project Code
 =======
 Deployed with Vercel at https://inew-2332-grade-book.vercel.app/
