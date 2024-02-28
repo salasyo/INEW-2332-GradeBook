@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { testConnection } from "../../lib/mongo/connectionTest";
+
+import { testConnection } from "../../../lib/mongo/connectionTest";
 
 async function getConnection() {
   const connection = await testConnection();
