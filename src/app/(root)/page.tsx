@@ -1,23 +1,17 @@
 
-import { testConnection } from "../../../lib/mongo/connectionTest";
-
-async function getConnection() {
-  const connection = await testConnection();
-
-  if (!connection) throw new Error('Test connection failed!')
-
-  return connection
-}
 
 export default async function Home() {
-  const thisConnection = await getConnection();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        { thisConnection }
-      </div>
-    </main>
+    <>
+      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
+        <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
+          <div className="flex flex-col justify-center gap-8">
+            <h1 className="h1-bold">Welcome to the Database Management System of Some College!</h1>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
