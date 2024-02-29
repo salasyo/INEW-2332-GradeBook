@@ -1,6 +1,6 @@
 Repository for INEW-2332 GradeBook Project Code
 =======
-Deployed with Vercel at https://inew-2332-grade-book.vercel.app/
+Deployed with Vercel at [https://inew-2332-grade-book.vercel.app/](https://inew-2332-grade-book-ava-kyx4.vercel.app/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
