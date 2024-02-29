@@ -18,9 +18,9 @@ export interface ISection extends Document {
 const SectionSchema = new Schema({
   className: { type: String, required: true},
   class: { type: Schema.Types.ObjectId, ref: 'Class' },
-  meetingDays: { type: String },
-  startTime: { type: String },
-  endTime: { type: String },
+  meetingDays: { type: String, default: 'TBD' },
+  startTime: { type: String, default: 'TBD' },
+  endTime: { type: String, default: 'TBD' },
   startDate: { type: Date, default: Date.now},
   endDate: { type: Date, default: Date.now},
   roomNumber: {type: String },
