@@ -11,6 +11,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Database Management System",
   description: "DBMS for Some College",
+  icons: {
+    icon: '../../public/assets/images/exam-paper.svg'
+  }
 };
 
 export default function RootLayout({
