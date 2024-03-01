@@ -82,16 +82,17 @@ export async function POST(req: Request) {
   }
 
   if(eventType === 'user.updated') {
-    const { id, username, first_name, last_name }
+    const { id, username, first_name, last_name, public_metadata }
       = evt.data;
 
-    const { sessionClaims } = auth()
+    //const { sessionClaims } = auth()
+    const newRole = "" + public_metadata.role
 
     const user = {
       username: username!,
       firstName: first_name,
       lastName: last_name,
-      role: sessionClaims?.metadata.role!
+      role: newRole
     }
 
     const updatedUser = await updateUser(id, user)
