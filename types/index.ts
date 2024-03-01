@@ -3,10 +3,14 @@ export type CreateUserParams = {
   clerkId: string
   username: string
   email: string
+  firstName: string
+  lastName: string
 }
 
 export type UpdateUserParams = {
   username: string
+  firstName: string
+  lastName: string
 }
 
 // ====== EVENT PARAMS
