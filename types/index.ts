@@ -5,12 +5,14 @@ export type CreateUserParams = {
   email: string
   firstName: string
   lastName: string
+  role: string
 }
 
 export type UpdateUserParams = {
   username: string
   firstName: string
   lastName: string
+  role: string
 }
 
 // ====== EVENT PARAMS

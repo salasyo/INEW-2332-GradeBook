@@ -2,7 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, updateUser } from '../../../../../lib/actions/user.actions'
-import { clerkClient } from '@clerk/nextjs'
+import { auth, clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
  
 export async function POST(req: Request) {
@@ -63,7 +63,8 @@ export async function POST(req: Request) {
       email: email_addresses[0].email_address,
       username: username!,
       firstName: first_name,
-      lastName: last_name
+      lastName: last_name,
+      role: "none"
     }
 
     const newUser = await createUser(user);
@@ -71,6 +72,7 @@ export async function POST(req: Request) {
     if(newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
+          role: "none",
           userId: newUser._id
         }
       })
@@ -83,13 +85,18 @@ export async function POST(req: Request) {
     const { id, username, first_name, last_name }
       = evt.data;
 
+    const { sessionClaims } = auth()
+
     const user = {
       username: username!,
       firstName: first_name,
-      lastName: last_name
+      lastName: last_name,
+      role: sessionClaims?.metadata.role!
     }
 
     const updatedUser = await updateUser(id, user)
+
+    return NextResponse.json({ message: 'OK', user: updatedUser })
   }
  
   return new Response('', { status: 200 })

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default async function Home() {
@@ -14,25 +15,33 @@ export default async function Home() {
             </p>
 
             <div className="flex flex-col flex-center gap-8">
-              <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="/">
-                Add/View Sections
-              </Link>
-            </Button>
+              <SignedOut>
+                <Button size="lg" asChild className="button w-full sm:w-fit">
+                  <Link href="/">
+                    Visitor Menu
+                  </Link>
+                </Button>
+              </SignedOut>
+              <SignedIn>
+                <Button size="lg" asChild className="button w-full sm:w-fit">
+                  <Link href="/admin/dashboard">
+                    Admin Menu
+                  </Link>
+                </Button>
 
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="/">
-                Add/View Students
-              </Link>
-            </Button>
+                <Button size="lg" asChild className="button w-full sm:w-fit">
+                  <Link href="/">
+                    Student Menu
+                  </Link>
+                </Button>
 
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="/">
-                Add/View Instructors
-              </Link>
-            </Button>
+                <Button size="lg" asChild className="button w-full sm:w-fit">
+                  <Link href="/">
+                    Instructor Menu
+                  </Link>
+                </Button>
+              </SignedIn>
             </div>
-
             
           </div>
         </div>
