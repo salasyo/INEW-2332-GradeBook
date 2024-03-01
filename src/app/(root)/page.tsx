@@ -15,8 +15,8 @@ export default async function Home() {
                 Please choose from the following directory:
               </p>
               <SignedOut>
-                <p className="flex-center p-regular-18 md:p-regular-18">
-                  (Login for more options)
+                <p className="flex-center p-regular-18 md:p-regular-18 text-primary-500">
+                  Login for more options
                 </p>
               </SignedOut>
               <SignedIn>
@@ -29,7 +29,7 @@ export default async function Home() {
             <div className="flex flex-col flex-center gap-8">
               <SignedOut>
                 <Button size="lg" asChild className="button w-full sm:w-fit">
-                  <Link href="/">
+                  <Link href="/visitor/dashboard">
                     Visitor Menu
                   </Link>
                 </Button>
@@ -37,19 +37,19 @@ export default async function Home() {
 
               <SignedIn>
                 <Button size="lg" asChild className="button w-full sm:w-fit">
-                  <Link href="/">
+                  <Link href="/visitor/dashboard">
                     Visitor Menu
                   </Link>
                 </Button>
 
                 <Button size="lg" asChild className="button w-full sm:w-fit">
-                  <Link href="/">
+                  <Link href="/student/dashboard">
                     Student Menu
                   </Link>
                 </Button>
 
                 <Button size="lg" asChild className="button w-full sm:w-fit">
-                  <Link href="/">
+                  <Link href="/instructor/dashboard">
                     Instructor Menu
                   </Link>
                 </Button>
