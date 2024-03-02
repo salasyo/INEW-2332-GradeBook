@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { CreateUserParams, UpdateUserParams } from "../../types"
+import { CreateUserParams, UpdateUserParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils"
