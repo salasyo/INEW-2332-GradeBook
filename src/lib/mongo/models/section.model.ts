@@ -12,7 +12,6 @@ export interface ISection extends Document {
   endDate: Date;
   roomNumber: string;
   instructor: { _id: string, firstName: string, lastName: string }
-
 }
 
 const SectionSchema = new Schema({

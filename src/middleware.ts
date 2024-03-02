@@ -4,12 +4,14 @@ export default authMiddleware({
   publicRoutes: [
     '/',
     '/api/webhooks/clerk',
-    '/visitor/dashboard'
+    '/visitor/dashboard',
+    '/sections/view'
   ],
 
   ignoredRoutes: [
     '/api/webhooks/clerk',
-    '/visitor/dashboard'
+    '/visitor/dashboard',
+    '/sections/view'
   ]
 });
  

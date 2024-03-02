@@ -5,17 +5,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { getAllClasses } from "@/lib/actions/class.actions"
 import { IClass } from "@/lib/mongo/models/class.model"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
-type DropdownProps = {
+type SectionDropdownProps = {
   value?: string
   onChangeHandler?: () => void
 }
 
-const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
+const SectionDropdown = ({ value, onChangeHandler }: SectionDropdownProps) => {
   const [classes, setClasses] = useState<IClass[]>([])
+
+  useEffect(() => {
+    const getClasses = async () => {
+      const classesList = await getAllClasses();
+
+      classesList && setClasses(classesList as IClass[])
+    }
+
+    getClasses();
+  })
 
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
@@ -33,4 +44,4 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   )
 }
 
-export default Dropdown
+export default SectionDropdown

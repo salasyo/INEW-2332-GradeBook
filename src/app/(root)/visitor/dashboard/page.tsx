@@ -16,7 +16,7 @@ export default function VisitorDashboard() {
             
             <div className="flex flex-col flex-center gap-8">
               <Button size="lg" asChild className="button w-full sm:w-fit">
-                <Link href="/">
+                <Link href="../../sections/view">
                   View Class Sections
                 </Link>
               </Button>

@@ -20,7 +20,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { sectionDefaultValues } from "@/constants"
-import Dropdown from "./Dropdown"
+import SectionDropdown from "./SectionDropdown"
+import { createSection } from "@/lib/actions/section.actions"
+import InstructorDropdown from "./InstructorDropdown"
 
 type SectionFormProps = {
   type: "Create" | "Update"
@@ -37,10 +39,22 @@ const SectionForm = ({ type }: SectionFormProps) => {
   })
 
   // Define a submit handler.
-  function onSubmit(values: z.infer<typeof sectionFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof sectionFormSchema>) {
+
+    if (type === 'Create') {
+      try {
+        const newSection = await createSection({
+          section: { ...values },
+        })
+
+        if(newSection) {
+          form.reset();
+        }
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   return (
@@ -66,7 +80,7 @@ const SectionForm = ({ type }: SectionFormProps) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Dropdown onChangeHandler={field.onChange} value={field.value} />
+                  <SectionDropdown onChangeHandler={field.onChange} value={field.value} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -158,6 +172,18 @@ const SectionForm = ({ type }: SectionFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <Input placeholder="Room Number or Online" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="instructorId"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <InstructorDropdown onChangeHandler={field.onChange} value={field.value} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
