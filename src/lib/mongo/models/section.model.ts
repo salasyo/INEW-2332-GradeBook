@@ -1,9 +1,9 @@
-import { Timestamp } from "mongodb";
+
 import { Schema, model, models } from "mongoose";
 
 export interface ISection extends Document {
   _id: string;
-  className: string;
+  sectionNumber: string;
   class: { _id: string, abbreviation: string, name: string,  description: string} ;
   meetingDays: string;
   startTime: string;
@@ -12,11 +12,10 @@ export interface ISection extends Document {
   endDate: Date;
   roomNumber: string;
   instructor: { _id: string, firstName: string, lastName: string }
-
 }
 
 const SectionSchema = new Schema({
-  className: { type: String, required: true},
+  sectionNumber: { type: String, required: true},
   class: { type: Schema.Types.ObjectId, ref: 'Class' },
   meetingDays: { type: String, default: 'TBD' },
   startTime: { type: String, default: 'TBD' },

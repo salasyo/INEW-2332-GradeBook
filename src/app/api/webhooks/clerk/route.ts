@@ -1,8 +1,8 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createUser, updateUser } from '../../../../../lib/actions/user.actions'
-import { auth, clerkClient } from '@clerk/nextjs'
+import { createUser, deleteUser, updateUser } from '../../../../lib/actions/user.actions'
+import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
  
 export async function POST(req: Request) {
@@ -85,7 +85,6 @@ export async function POST(req: Request) {
     const { id, username, first_name, last_name, public_metadata }
       = evt.data;
 
-    //const { sessionClaims } = auth()
     const newRole = "" + public_metadata.role
 
     const user = {
@@ -98,6 +97,14 @@ export async function POST(req: Request) {
     const updatedUser = await updateUser(id, user)
 
     return NextResponse.json({ message: 'OK', user: updatedUser })
+  }
+
+  if(eventType === 'user.deleted') {
+    const { id } = evt.data
+
+    const deletedUser = await deleteUser(id!)
+
+    return NextResponse.json({ message: 'OK', user: deleteUser })
   }
  
   return new Response('', { status: 200 })
