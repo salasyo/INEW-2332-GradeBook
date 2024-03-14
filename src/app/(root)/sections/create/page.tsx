@@ -16,7 +16,7 @@ const CreateSection = () => {
         <h3 className="wrapper h3-bold text-center sm:text-left">Create Section</h3>
       </section>
 
-      <div>
+      <div className="wrapper my-8">
         <SectionForm type="Create" />
       </div>
     </>

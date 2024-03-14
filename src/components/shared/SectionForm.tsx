@@ -198,7 +198,7 @@ const SectionForm = ({ type }: SectionFormProps) => {
           disabled={form.formState.isSubmitting}
           className="button"
         >
-          {form.formState.isSubmitting ? ('Submitting...') : `${type} Event`}
+          {form.formState.isSubmitting ? ('Submitting...') : `${type} Section`}
         </Button>
       </form>
     </Form>
