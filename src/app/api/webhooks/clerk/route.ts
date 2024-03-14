@@ -81,15 +81,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'OK', user: newUser })
   }
 
+  /*
   if(eventType === 'user.updated') {
-    const { id, email_addresses, username, first_name, last_name, public_metadata }
+    const { id, username, first_name, last_name, public_metadata }
       = evt.data;
 
     const newRole = "" + public_metadata.role
 
     const user = {
-      clerkId: id,
-      email: email_addresses[0].email_address,
       username: username!,
       firstName: first_name,
       lastName: last_name,
@@ -109,6 +108,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'OK', user: updatedUser })
   }
+  */
 
   if(eventType === 'user.deleted') {
     const { id } = evt.data

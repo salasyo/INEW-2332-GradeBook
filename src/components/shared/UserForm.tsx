@@ -44,7 +44,6 @@ const UserForm = ({ type, user, userId }: UserFormProps) => {
         const clerkId = values.clerkId;
 
         const userObject = {
-          email: values.email,
           username: values.username,
           firstName: values.firstName,
           lastName: values.lastName,
