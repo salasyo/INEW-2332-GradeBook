@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { CreateUserParams, UpdateUserParams } from "../../../types"
+import { CreateUserParams, GetAllUsersParams, UpdateUserParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils"
@@ -28,6 +28,47 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     return JSON.parse(JSON.stringify(updatedUser))
   } catch (error) {
     handleError(error)
+  }
+}
+
+export const getAllUsers = async ({ query, limit = 6, page, userType }: GetAllUsersParams) => {
+  try {
+    await connectToDatabase();
+
+    const conditions = {};
+
+    const usersQuery = User.find(conditions)
+      .sort({ lastName: 'asc' })
+      .skip(0)
+      .limit(limit);
+
+    const users = await usersQuery;
+    const usersCount = await User.countDocuments(conditions);
+
+    return {
+      data: JSON.parse(JSON.stringify(users)),
+      totalPages: Math.ceil(usersCount / limit),
+    }
+  }
+  catch (error) {
+    handleError(error)
+  }
+}
+
+export async function getUserById(userId: string) {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return JSON.parse(JSON.stringify(user));
+  }
+  catch (error) {
+    handleError(error);
   }
 }
 

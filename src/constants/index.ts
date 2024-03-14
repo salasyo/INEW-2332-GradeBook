@@ -9,3 +9,12 @@ export const sectionDefaultValues = {
   roomNumber: '',
   instructorId: '',
 }
+
+export const userDefaultValues = {
+  clerkId: '',
+  email: '',
+  username: '',
+  firstName: '',
+  lastName: '',
+  role: '',
+}

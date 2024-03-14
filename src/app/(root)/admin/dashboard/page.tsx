@@ -38,6 +38,14 @@ export default function AdminDashboard() {
                 </Link>
               </Button>
             </div>
+
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href="../../admin/user-management">
+                  Manage Users
+                </Link>
+              </Button>
+            </div>
             
           </div>
         </div>

@@ -15,6 +15,13 @@ export type UpdateUserParams = {
   role: string
 }
 
+export type GetAllUsersParams = {
+  query: string
+  userType: string
+  limit: number
+  page: number
+}
+
 // ====== SECTION PARAMS
 export type CreateSectionParams = {
   section: {
@@ -64,3 +71,4 @@ export type GetRelatedSectionsByClassParams = {
   limit?: number
   page: number | string
 }
+
