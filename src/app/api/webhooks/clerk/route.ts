@@ -82,12 +82,14 @@ export async function POST(req: Request) {
   }
 
   if(eventType === 'user.updated') {
-    const { id, username, first_name, last_name, public_metadata }
+    const { id, email_addresses, username, first_name, last_name, public_metadata }
       = evt.data;
 
     const newRole = "" + public_metadata.role
 
     const user = {
+      clerkId: id,
+      email: email_addresses[0].email_address,
       username: username!,
       firstName: first_name,
       lastName: last_name,
@@ -95,6 +97,15 @@ export async function POST(req: Request) {
     }
 
     const updatedUser = await updateUser(id, user)
+
+    if(updatedUser) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          role: newRole,
+          userId: updatedUser._id
+        }
+      })
+    }
 
     return NextResponse.json({ message: 'OK', user: updatedUser })
   }

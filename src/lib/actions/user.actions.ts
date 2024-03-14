@@ -5,6 +5,7 @@ import { CreateUserParams, GetAllUsersParams, UpdateUserParams } from "../../../
 import { connectToDatabase } from "../mongo";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils"
+import { clerkClient } from "@clerk/nextjs/server";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
@@ -25,6 +26,18 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     const updatedUser = await User.findOneAndUpdate({ clerkId }, user, { new: true })
 
     if (!updatedUser) throw new Error('User update failed')
+
+    const res = await clerkClient.users.updateUser(
+      clerkId, 
+      {
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        publicMetadata: { role: user.role, userId: updatedUser._id }
+      }
+    )
+
+    if (!res) throw new Error('Clerk update failed')
+
     return JSON.parse(JSON.stringify(updatedUser))
   } catch (error) {
     handleError(error)
