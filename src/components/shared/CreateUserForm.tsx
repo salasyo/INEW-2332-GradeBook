@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { adminCreateUser } from "@/lib/actions/user.actions";
 
 const CreateUserForm = () => {
   const initialValues = newUserDefaultValues;
@@ -20,7 +21,22 @@ const CreateUserForm = () => {
 
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof newUserFormSchema>) {
-    console.log(values);
+
+    try {
+      const emailArray = [ values.email ];
+
+      const userObject = {
+        emailAddress: emailArray,
+        username: values.username,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        password: values.password,
+      }
+
+      const newUser = await adminCreateUser(userObject);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -73,6 +89,19 @@ const CreateUserForm = () => {
               <FormItem className="w-full">
                 <FormControl>
                   <Input placeholder="Email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input placeholder="Temporary Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

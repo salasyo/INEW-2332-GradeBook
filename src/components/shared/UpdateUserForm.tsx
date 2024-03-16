@@ -51,8 +51,6 @@ const UpdateUserForm = ({ user, userId }: UpdateUserFormProps) => {
 
       const updatedUser = await updateUser(clerkId, userObject)
 
-      console.log(updatedUser);
-
     } catch (error) {
       console.log(error)
     }

@@ -24,4 +24,5 @@ export const newUserDefaultValues = {
   username: '',
   firstName: '',
   lastName: '',
+  password: '',
 }
