@@ -1,5 +1,5 @@
 
-import UserForm from "@/components/shared/UserForm";
+import UpdateUserForm from "@/components/shared/UpdateUserForm";
 import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -27,7 +27,7 @@ const UpdateUser = async ({ params: { id } }: UpdateUserProps) => {
       </section>
 
       <div className="wrapper my-8">
-        <UserForm type="Update" user={user} userId={user._id} />
+        <UpdateUserForm user={user} userId={user._id} />
       </div>
     </>
   )

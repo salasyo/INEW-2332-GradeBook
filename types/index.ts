@@ -8,6 +8,14 @@ export type CreateUserParams = {
   role: string
 }
 
+export type AdminCreateUserParams = {
+  emailAddress: string[]
+  username: string
+  password: string
+  firstName: string
+  lastName: string
+}
+
 export type UpdateUserParams = {
   username: string
   firstName: string

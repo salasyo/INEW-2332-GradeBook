@@ -41,8 +41,16 @@ export default function AdminDashboard() {
 
             <div className="flex flex-col flex-center gap-8">
               <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href="/users/create">
+                  Create a New User
+                </Link>
+              </Button>
+            </div>
+
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
                 <Link href="../../admin/user-management">
-                  Manage Users
+                  Manage Existing Users
                 </Link>
               </Button>
             </div>

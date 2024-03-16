@@ -13,15 +13,14 @@ import { useRouter } from "next/navigation";
 import { updateUser } from "@/lib/actions/user.actions";
 import RoleDropdown from "./RoleDropdown";
 
-type UserFormProps = {
-  type: "Create" | "Update"
+type UpdateUserFormProps = {
   user?: IUser,
   userId?: string
 }
 
-const UserForm = ({ type, user, userId }: UserFormProps) => {
+const UpdateUserForm = ({ user, userId }: UpdateUserFormProps) => {
   
-  const initialValues = user && type === 'Update' ? user : userDefaultValues;
+  const initialValues = user ? user : userDefaultValues;
   //const router = useRouter();
   
   // Define your form.
@@ -33,30 +32,29 @@ const UserForm = ({ type, user, userId }: UserFormProps) => {
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof userFormSchema>) {
 
-    if (type === 'Update') {
-      if(!userId) {
-        console.log("No user provided");
-        //router.back();
-        return;
+    if(!userId) {
+      console.log("No user provided");
+      //router.back();
+      return;
+    }
+
+    try {
+      
+      const clerkId = values.clerkId;
+
+      const userObject = {
+        username: values.username,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        role: values.role
       }
-      try {
-        
-        const clerkId = values.clerkId;
 
-        const userObject = {
-          username: values.username,
-          firstName: values.firstName,
-          lastName: values.lastName,
-          role: values.role
-        }
+      const updatedUser = await updateUser(clerkId, userObject)
 
-        const updatedUser = await updateUser(clerkId, userObject)
+      console.log(updatedUser);
 
-        console.log(updatedUser);
-
-      } catch (error) {
-        console.log(error)
-      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -134,8 +132,6 @@ const UserForm = ({ type, user, userId }: UserFormProps) => {
             )}
           />
 
-          
-
           <FormField 
             control={form.control}
             name="role"
@@ -158,11 +154,11 @@ const UserForm = ({ type, user, userId }: UserFormProps) => {
           disabled={form.formState.isSubmitting}
           className="button"
         >
-          {form.formState.isSubmitting ? ('Submitting...') : `${type} User`}
+          {form.formState.isSubmitting ? ('Submitting...') : ('Update User')}
         </Button>
       </form>
     </Form>
   )
 }
 
-export default UserForm
+export default UpdateUserForm

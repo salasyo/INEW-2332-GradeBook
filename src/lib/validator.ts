@@ -20,3 +20,10 @@ export const userFormSchema = z.object({
   lastName: z.string(),
   role: z.string()
 })
+
+export const newUserFormSchema = z.object({
+  email: z.string(),
+  username: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+})

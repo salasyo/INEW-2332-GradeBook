@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { CreateUserParams, GetAllUsersParams, UpdateUserParams } from "../../../types"
+import { AdminCreateUserParams, CreateUserParams, GetAllUsersParams, UpdateUserParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils"
@@ -16,6 +16,21 @@ export const createUser = async (user: CreateUserParams) => {
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
     handleError(error)
+  }
+}
+
+export const adminCreateUser = async (user: AdminCreateUserParams) => {
+  try {
+    const res = await clerkClient.users.createUser(user)
+
+    console.log(res);
+
+    if (!res) {
+      throw new Error('User creation failed')
+    }
+
+  } catch (error) {
+    handleError(error);
   }
 }
 

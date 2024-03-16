@@ -18,3 +18,10 @@ export const userDefaultValues = {
   lastName: '',
   role: '',
 }
+
+export const newUserDefaultValues = {
+  email: '',
+  username: '',
+  firstName: '',
+  lastName: '',
+}
