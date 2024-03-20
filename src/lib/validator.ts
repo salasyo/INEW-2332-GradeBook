@@ -11,3 +11,20 @@ export const sectionFormSchema = z.object({
   roomNumber: z.string().max(7, 'Room number must be less than 7 characters'),
   instructorId: z.string()
 })
+
+export const userFormSchema = z.object({
+  clerkId: z.string(),
+  email: z.string(),
+  username: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  role: z.string()
+})
+
+export const newUserFormSchema = z.object({
+  email: z.string(),
+  username: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  password: z.string(),
+})

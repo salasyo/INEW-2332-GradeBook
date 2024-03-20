@@ -8,11 +8,26 @@ export type CreateUserParams = {
   role: string
 }
 
+export type AdminCreateUserParams = {
+  emailAddress: string[]
+  username: string
+  password: string
+  firstName: string
+  lastName: string
+}
+
 export type UpdateUserParams = {
   username: string
   firstName: string
   lastName: string
   role: string
+}
+
+export type GetAllUsersParams = {
+  query: string
+  userType: string
+  limit: number
+  page: number
 }
 
 // ====== SECTION PARAMS
@@ -64,3 +79,4 @@ export type GetRelatedSectionsByClassParams = {
   limit?: number
   page: number | string
 }
+
