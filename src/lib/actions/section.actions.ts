@@ -54,4 +54,22 @@ export const getAllSections = async ({ query, limit = 6, page, classType }: GetA
 
 }
 
+export const getSectionById = async (sectionId: string) => {
+  try {
+    await connectToDatabase();
+
+    //const section = await Section.findById(sectionId);
+    const section = await populateSection(Section.findById(sectionId));
+
+    if (!section) {
+      throw new Error('User not found');
+    }
+
+    return JSON.parse(JSON.stringify(section));
+  }
+  catch (error) {
+    handleError(error);
+  }
+}
+
 

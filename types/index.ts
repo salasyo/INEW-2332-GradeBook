@@ -80,3 +80,15 @@ export type GetRelatedSectionsByClassParams = {
   page: number | string
 }
 
+// =========== ENROLLMENT PARAMS
+export type CreateEnrollmentParams = {
+  sectionId: string,
+  studentId: string
+}
+
+export type GetEnrollmentsByUserParams = {
+  userId: string | null
+  limit?: number
+  page: number | number | null
+}
+
