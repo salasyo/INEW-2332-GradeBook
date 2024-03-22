@@ -30,6 +30,11 @@ export type GetAllUsersParams = {
   page: number
 }
 
+export type GetAllInstructorUserParams = {
+  limit: number
+  page: number
+}
+
 // ====== SECTION PARAMS
 export type CreateSectionParams = {
   section: {
