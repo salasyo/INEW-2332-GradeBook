@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { AdminCreateUserParams, CreateUserParams, GetAllUsersParams, UpdateUserParams } from "../../../types"
+import { AdminCreateUserParams, CreateUserParams, GetAllInstructorUserParams, GetAllUsersParams, UpdateUserParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils"
@@ -79,6 +79,22 @@ export const getAllUsers = async ({ query, limit = 6, page, userType }: GetAllUs
     }
   }
   catch (error) {
+    handleError(error)
+  }
+}
+
+export const getAllInstructorUsers = async ({ limit = 10, page }: GetAllInstructorUserParams) => {
+  try {
+    await connectToDatabase();
+
+    const conditions = { role: 'instructor' };
+
+    const instructorUsers = await User.find(conditions)
+      .limit(limit)
+
+    return JSON.parse(JSON.stringify(instructorUsers))
+    
+  } catch (error) {
     handleError(error)
   }
 }

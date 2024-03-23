@@ -2,7 +2,7 @@ import { ISection } from "@/lib/mongo/models/section.model"
 import { formatDateTime } from "@/lib/utils"
 import Link from "next/link"
 
-type CollectionProps = {
+type EnrollmentCollectionProps = {
   data: ISection[],
   emptyTitle: string,
   emptyStateSubtext: string,
@@ -12,14 +12,14 @@ type CollectionProps = {
   collectionType?: 'All_Sections'
 }
 
-const Collection = ({
+const EnrollmentCollection = ({
   data,
   emptyTitle,
   emptyStateSubtext,
   page,
   totalPages = 0,
   collectionType
-}: CollectionProps) => {
+}: EnrollmentCollectionProps) => {
   return (
     <>
       {data.length > 0 ? (
@@ -31,7 +31,7 @@ const Collection = ({
                 <li key={section._id} className="flex justify-center">
                   <div className="group relative flex w-full max-w-[500px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg p-5">
                     <Link
-                      href={`/sections/${section._id}/publicView`}
+                      href={`/sections/${section._id}/view`}
                     >
                       <p className="p-semibold-18">
                         {section.class.abbreviation}: {section.class.name}
@@ -55,7 +55,6 @@ const Collection = ({
                         Instructor: {section.instructor.lastName}, {section.instructor.firstName}
                       </p>
                     </Link>
-                    
                   </div>
                 </li>
               )
@@ -72,4 +71,4 @@ const Collection = ({
   )
 }
 
-export default Collection
+export default EnrollmentCollection

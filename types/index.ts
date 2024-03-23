@@ -30,6 +30,11 @@ export type GetAllUsersParams = {
   page: number
 }
 
+export type GetAllInstructorUserParams = {
+  limit: number
+  page: number
+}
+
 // ====== SECTION PARAMS
 export type CreateSectionParams = {
   section: {
@@ -78,5 +83,17 @@ export type GetRelatedSectionsByClassParams = {
   eventId: string
   limit?: number
   page: number | string
+}
+
+// =========== ENROLLMENT PARAMS
+export type CreateEnrollmentParams = {
+  sectionId: string,
+  studentId: string
+}
+
+export type GetEnrollmentsByUserParams = {
+  userId: string | null
+  limit?: number
+  page: number | number | null
 }
 
