@@ -23,7 +23,7 @@ const SectionSchema = new Schema({
   startDate: { type: Date, default: Date.now},
   endDate: { type: Date, default: Date.now},
   roomNumber: {type: String },
-  instructor: { type: Schema.Types.ObjectId, ref: 'Instructor' }
+  instructor: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
 const Section = models.Section || model('Section', SectionSchema);

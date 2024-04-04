@@ -1,17 +1,16 @@
 "use server"
 
-import { Query } from "mongoose";
 import { CreateSectionParams, GetAllSectionsParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import Section from "../mongo/models/section.model";
 import { handleError } from "../utils"
 import Class from "../mongo/models/class.model";
-import Instructor from "../mongo/models/instructor.model";
+import User from "../mongo/models/user.model";
 
 const populateSection = (query: any) => {
   return query
     .populate({ path: 'class', model: Class, select: '_id abbreviation name description' })
-    .populate({ path: 'instructor', model: Instructor, select: '_id firstName lastName' })
+    .populate({ path: 'instructor', model: User, select: '_id firstName lastName' })
 }
 
 export const createSection = async ({ section }: CreateSectionParams) => {
