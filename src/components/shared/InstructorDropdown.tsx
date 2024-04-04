@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import { IInstructor } from "@/lib/mongo/models/instructor.model"
-import { getAllInstructors } from "@/lib/actions/instructor.actions"
 import { getAllInstructorUsers } from "@/lib/actions/user.actions"
 import { IUser } from "@/lib/mongo/models/user.model"
 
