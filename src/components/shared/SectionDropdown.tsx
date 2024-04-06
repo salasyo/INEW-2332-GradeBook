@@ -36,7 +36,7 @@ const SectionDropdown = ({ value, onChangeHandler }: SectionDropdownProps) => {
       <SelectContent>
         {classes.length > 0 && classes.map((item) => (
           <SelectItem key={item._id} value={item._id} className="select-item p-regular-14">
-            {item.abbreviation}: {item.name}
+            {item.subject} {item.number}: {item.name}
           </SelectItem>
         ))}
       </SelectContent>

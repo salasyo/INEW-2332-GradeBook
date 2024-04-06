@@ -13,7 +13,7 @@ const SectionViewModule = ({ section, sectionId }: SectionViewModuleProps) => {
     <section className="wrapper max-w-[500px]">
 
         <h4 className="py-5 p-bold-24 text-center">
-          {section.class.abbreviation}: {section.class.name} - {section.sectionNumber}
+          {section.class.subject} {section.class.number}: {section.class.name} - {section.sectionNumber}
         </h4>
         
         <p className="py-3 italic">

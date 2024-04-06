@@ -33,7 +33,7 @@ const Collection = ({
                       href={`/sections/${section._id}/publicView`}
                     >
                       <p className="p-semibold-18">
-                        {section.class.abbreviation}: {section.class.name}
+                        {section.class.subject} {section.class.number}: {section.class.name}
                       </p>
                       <p>
                         Section Number: {section.sectionNumber}

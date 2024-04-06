@@ -33,7 +33,7 @@ const EnrollmentCollection = ({
                       href={`/sections/${section._id}/view`}
                     >
                       <p className="p-semibold-18">
-                        {section.class.abbreviation}: {section.class.name}
+                        {section.class.subject} {section.class.number}: {section.class.name}
                       </p>
                       <p>
                         Section Number: {section.sectionNumber}

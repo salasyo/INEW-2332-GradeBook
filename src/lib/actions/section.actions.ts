@@ -9,7 +9,7 @@ import User from "../mongo/models/user.model";
 
 const populateSection = (query: any) => {
   return query
-    .populate({ path: 'class', model: Class, select: '_id abbreviation name description' })
+    .populate({ path: 'class', model: Class, select: '_id subject number name description' })
     .populate({ path: 'instructor', model: User, select: '_id firstName lastName' })
 }
 

@@ -8,7 +8,8 @@ export interface IEnrollment extends Document {
     sectionNumber: string, 
     class: {
       _id: string,
-      abbreviation: string,
+      subject: string,
+      number: string,
       name: string,
     },  
     meetingDays: string,

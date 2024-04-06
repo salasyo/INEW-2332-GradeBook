@@ -4,7 +4,7 @@ import { Schema, model, models } from "mongoose";
 export interface ISection extends Document {
   _id: string;
   sectionNumber: string;
-  class: { _id: string, abbreviation: string, name: string,  description: string} ;
+  class: { _id: string, subject: string, number: string, name: string,  description: string} ;
   meetingDays: string;
   startTime: string;
   endTime: string;
