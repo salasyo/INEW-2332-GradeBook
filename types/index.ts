@@ -43,8 +43,7 @@ export type CreateSectionParams = {
     meetingDays: string
     startTime: string
     endTime: string
-    startDate: Date
-    endDate: Date
+    semester: string
     roomNumber: string
     instructorId: string
   }

@@ -9,7 +9,7 @@ const Footer = () => {
           <Image src="/assets/images/exam-paper.svg" alt="logo" width={40} height={40}/>
         </Link>
         
-        <p>2024 Gradebook. All Rights reserved.</p>
+        <p>2024 Gradebook. All rights reserved.</p>
       </div>
     </footer>
   )

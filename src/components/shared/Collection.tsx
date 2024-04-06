@@ -1,5 +1,4 @@
 import { ISection } from "@/lib/mongo/models/section.model"
-import { formatDateTime } from "@/lib/utils"
 import Link from "next/link"
 
 type CollectionProps = {
@@ -34,7 +33,7 @@ const Collection = ({
                       href={`/sections/${section._id}/publicView`}
                     >
                       <p className="p-semibold-18">
-                        {section.class.abbreviation}: {section.class.name}
+                        {section.class.subject} {section.class.number}: {section.class.name}
                       </p>
                       <p>
                         Section Number: {section.sectionNumber}
@@ -46,7 +45,7 @@ const Collection = ({
                         Meeting Time: {section.startTime} - {section.endTime}
                       </p>
                       <p>
-                        Start/End Dates: {formatDateTime(section.startDate).dateOnly} - {formatDateTime(section.endDate).dateOnly}
+                        Semester: {section.semester}
                       </p>
                       <p>
                         Room Number: {section.roomNumber}

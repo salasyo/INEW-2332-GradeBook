@@ -42,7 +42,7 @@ export const getEnrollmentsByUser = async ({ userId, limit = 10, page = 1 }: Get
         populate: {
             path: 'class',
             model: Class,
-            select: '_id abbreviation name'
+            select: '_id subject number name'
           },
       })
       .populate({
