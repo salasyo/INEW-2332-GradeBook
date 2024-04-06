@@ -1,7 +1,6 @@
 //"use client"
 
 import { ISection } from "@/lib/mongo/models/section.model"
-import { formatDateTime } from "@/lib/utils"
 
 type SectionViewModuleProps = {
   section: ISection,
@@ -28,7 +27,7 @@ const SectionViewModule = ({ section, sectionId }: SectionViewModuleProps) => {
           Meeting Time: {section.startTime} - {section.endTime}
         </p>
         <p className="py-3">
-          Start/End Dates: {formatDateTime(section.startDate).dateOnly} - {formatDateTime(section.endDate).dateOnly}
+          Semester: {section.semester}
         </p>
         <p className="py-3">
           Room Number: {section.roomNumber}

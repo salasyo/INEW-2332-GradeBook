@@ -1,7 +1,6 @@
 "use client"
 
 import { ISection } from "@/lib/mongo/models/section.model"
-import { formatDateTime } from "@/lib/utils"
 import { Button } from "../ui/button"
 import { IUser } from "@/lib/mongo/models/user.model"
 import { createEnrollment, getEnrollmentsByUser } from "@/lib/actions/enrollment.actions"
@@ -29,8 +28,6 @@ const SectionEnrollmentModule = ({ section, sectionId, user, userId, data }: Sec
 
     return matchFound;
   };
-
-  const isDisabled = findMatch();
 
   async function handleClick() {
     try {
@@ -65,7 +62,7 @@ const SectionEnrollmentModule = ({ section, sectionId, user, userId, data }: Sec
           Meeting Time: {section.startTime} - {section.endTime}
         </p>
         <p className="py-3">
-          Start/End Dates: {formatDateTime(section.startDate).dateOnly} - {formatDateTime(section.endDate).dateOnly}
+          Semester: {section.semester}
         </p>
         <p className="py-3">
           Room Number: {section.roomNumber}

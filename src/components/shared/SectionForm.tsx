@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { sectionFormSchema } from "../../lib/validator"
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -23,6 +22,7 @@ import { sectionDefaultValues } from "@/constants"
 import SectionDropdown from "./SectionDropdown"
 import { createSection } from "@/lib/actions/section.actions"
 import InstructorDropdown from "./InstructorDropdown"
+import SemesterDropdown from "./SemesterDropdown"
 
 type SectionFormProps = {
   type: "Create" | "Update"
@@ -125,46 +125,19 @@ const SectionForm = ({ type }: SectionFormProps) => {
               </FormItem>
             )}
           />
-          <FormField
+
+          <FormField 
             control={form.control}
-            name="startDate"
+            name="semester"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <p className="ml-3 whitespace-nowrap text-gray-600">Start Date:</p>
-                    <DatePicker 
-                      selected={field.value} 
-                      onChange={(date: Date) => field.onChange(date)}
-                      dateFormat="MM/dd/yyyy"
-                      wrapperClassName="datePicker"
-                    />
-                  </div>
+                  <SemesterDropdown onChangeHandler={field.onChange} value={field.value} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="endDate"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
-                    <p className="ml-3 whitespace-nowrap text-gray-600">End Date:</p>
-                    <DatePicker 
-                      selected={field.value} 
-                      onChange={(date: Date) => field.onChange(date)}
-                      dateFormat="MM/dd/yyyy"
-                      wrapperClassName="datePicker"
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <FormField
             control={form.control}
             name="roomNumber"
