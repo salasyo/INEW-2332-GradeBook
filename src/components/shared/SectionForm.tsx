@@ -23,6 +23,7 @@ import SectionDropdown from "./SectionDropdown"
 import { createSection } from "@/lib/actions/section.actions"
 import InstructorDropdown from "./InstructorDropdown"
 import SemesterDropdown from "./SemesterDropdown"
+import SubjectDropdown from "./SubjectDropdown"
 
 type SectionFormProps = {
   type: "Create" | "Update"
@@ -31,12 +32,16 @@ type SectionFormProps = {
 const SectionForm = ({ type }: SectionFormProps) => {
   
   const initialValues = sectionDefaultValues;
-  
+
   // Define your form.
   const form = useForm<z.infer<typeof sectionFormSchema>>({
     resolver: zodResolver(sectionFormSchema),
     defaultValues: initialValues
   })
+
+  // Watch for subject
+  const { watch } = form;
+  const subjectToSelect = watch("subjectAbbr");
 
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof sectionFormSchema>) {
@@ -74,13 +79,26 @@ const SectionForm = ({ type }: SectionFormProps) => {
             )}
           />
 
+          <FormField 
+            control={form.control}
+            name="subjectAbbr"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <SubjectDropdown onChangeHandler={field.onChange} value={field.value} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="classId"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <SectionDropdown onChangeHandler={field.onChange} value={field.value} />
+                  <SectionDropdown onChangeHandler={field.onChange} value={field.value} subject={subjectToSelect} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,6 +152,7 @@ const SectionForm = ({ type }: SectionFormProps) => {
                 <FormControl>
                   <SemesterDropdown onChangeHandler={field.onChange} value={field.value} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

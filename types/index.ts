@@ -96,3 +96,10 @@ export type GetEnrollmentsByUserParams = {
   page: number | number | null
 }
 
+// =========== CLASS PARAMS
+export type GetClassesBySubjectParams = {
+  subject: string,
+  limit: number,
+  page: number
+}
+

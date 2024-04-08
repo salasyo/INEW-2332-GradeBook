@@ -4,6 +4,7 @@ import { Schema, model, models } from "mongoose";
 export interface ISection extends Document {
   _id: string;
   sectionNumber: string;
+  subjectAbbr: string;
   class: { _id: string, subject: string, number: string, name: string,  description: string} ;
   meetingDays: string;
   startTime: string;
@@ -15,6 +16,7 @@ export interface ISection extends Document {
 
 const SectionSchema = new Schema({
   sectionNumber: { type: String, required: true},
+  subjectAbbr: { type: String, required: true },
   class: { type: Schema.Types.ObjectId, ref: 'Class' },
   meetingDays: { type: String, default: 'TBD' },
   startTime: { type: String, default: 'TBD' },
