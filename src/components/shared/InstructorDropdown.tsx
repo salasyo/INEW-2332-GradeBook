@@ -13,9 +13,9 @@ const InstructorDropdown = ({ value, onChangeHandler }: InstructorDropdownProps)
   const [instructors, setInstructors] = useState<IUser[]>([])
 
   useEffect(() => {
-    const getClasses = async () => {
+    const getInstructors = async () => {
       //const instructorsList = await getAllInstructors();
-      const limit = 10;
+      const limit = 30;
       const page = 1;
 
       const instructorsList = await getAllInstructorUsers({ limit, page });
@@ -23,7 +23,7 @@ const InstructorDropdown = ({ value, onChangeHandler }: InstructorDropdownProps)
       instructorsList && setInstructors(instructorsList as IUser[])
     }
 
-    getClasses();
+    getInstructors();
   })
 
   return (

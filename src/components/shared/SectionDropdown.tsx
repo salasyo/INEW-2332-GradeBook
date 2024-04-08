@@ -21,7 +21,7 @@ const SectionDropdown = ({ value, onChangeHandler, subject }: SectionDropdownPro
 
   useEffect(() => {
     const getClasses = async () => {
-      const limit = 10;
+      const limit = 30;
       const page = 1;
       //const subject = "MATH";
 
