@@ -16,7 +16,7 @@ export default async function EnrollInSections() {
     query: '',
     classType: '',
     page: 1,
-    limit: 6
+    limit: 100
   });
 
   return (
@@ -31,7 +31,7 @@ export default async function EnrollInSections() {
           emptyTitle="No Sections Found"
           emptyStateSubtext="Come back later"
           collectionType="All_Sections"
-          limit={6}
+          limit={100}
           page={1}
           totalPages={2}
         />
