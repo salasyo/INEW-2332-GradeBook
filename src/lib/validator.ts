@@ -28,3 +28,11 @@ export const newUserFormSchema = z.object({
   lastName: z.string(),
   password: z.string(),
 })
+
+export const newAssignmentFormSchema = z.object({
+  section: z.string(),
+  name: z.string(),
+  description: z.string(),
+  totalPoints: z.string(),
+  dueDate: z.string()
+})
