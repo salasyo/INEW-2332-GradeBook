@@ -1,6 +1,6 @@
 "use server"
 
-import { CreateSectionParams, GetAllSectionsParams } from "../../../types"
+import { CreateSectionParams, GetAllSectionsParams, GetInstructorSectionsParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import Section from "../mongo/models/section.model";
 import { handleError } from "../utils"
@@ -57,7 +57,6 @@ export const getSectionById = async (sectionId: string) => {
   try {
     await connectToDatabase();
 
-    //const section = await Section.findById(sectionId);
     const section = await populateSection(Section.findById(sectionId));
 
     if (!section) {
@@ -67,6 +66,31 @@ export const getSectionById = async (sectionId: string) => {
     return JSON.parse(JSON.stringify(section));
   }
   catch (error) {
+    handleError(error);
+  }
+}
+
+export const getInstructorSections = async ({ instructorId, limit, page }: GetInstructorSectionsParams) => {
+  try {
+
+    await connectToDatabase();
+
+    const conditions = { instructor: instructorId };
+
+    const sectionsQuery = Section.find(conditions)
+      .sort({ sectionNumber: 'asc' })
+      .skip(0)
+      .limit(limit);
+
+    console.log(sectionsQuery);
+
+    const sections = await populateSection(sectionsQuery);
+
+    return { 
+      data: JSON.parse(JSON.stringify(sections))
+    };
+
+  } catch (error) {
     handleError(error);
   }
 }

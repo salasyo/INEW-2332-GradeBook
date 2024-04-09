@@ -77,6 +77,12 @@ export type GetAllSectionsParams = {
   page: number
 }
 
+export type GetInstructorSectionsParams = {
+  instructorId: string
+  limit: number
+  page: number
+}
+
 export type GetRelatedSectionsByClassParams = {
   categoryId: string
   eventId: string
