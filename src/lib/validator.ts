@@ -2,6 +2,7 @@ import { z } from "zod"
 
 export const sectionFormSchema = z.object({
   sectionNumber: z.string(),
+  subjectAbbr: z.string(),
   classId: z.string(),
   meetingDays: z.string(),
   startTime: z.string(),

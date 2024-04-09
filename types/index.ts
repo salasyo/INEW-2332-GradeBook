@@ -77,6 +77,12 @@ export type GetAllSectionsParams = {
   page: number
 }
 
+export type GetInstructorSectionsParams = {
+  instructorId: string
+  limit: number
+  page: number
+}
+
 export type GetRelatedSectionsByClassParams = {
   categoryId: string
   eventId: string
@@ -94,5 +100,12 @@ export type GetEnrollmentsByUserParams = {
   userId: string | null
   limit?: number
   page: number | number | null
+}
+
+// =========== CLASS PARAMS
+export type GetClassesBySubjectParams = {
+  subject: string,
+  limit: number,
+  page: number
 }
 

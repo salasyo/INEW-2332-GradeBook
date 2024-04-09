@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { getAllClasses } from "@/lib/actions/class.actions"
+import { getAllClasses, getClassesBySubject } from "@/lib/actions/class.actions"
 import { IClass } from "@/lib/mongo/models/class.model"
 import { useEffect, useState } from "react"
 
@@ -13,14 +13,19 @@ import { useEffect, useState } from "react"
 type SectionDropdownProps = {
   value?: string
   onChangeHandler?: () => void
+  subject: string
 }
 
-const SectionDropdown = ({ value, onChangeHandler }: SectionDropdownProps) => {
+const SectionDropdown = ({ value, onChangeHandler, subject }: SectionDropdownProps) => {
   const [classes, setClasses] = useState<IClass[]>([])
 
   useEffect(() => {
     const getClasses = async () => {
-      const classesList = await getAllClasses();
+      const limit = 30;
+      const page = 1;
+      //const subject = "MATH";
+
+      const classesList = await getClassesBySubject({ subject, limit, page });
 
       classesList && setClasses(classesList as IClass[])
     }

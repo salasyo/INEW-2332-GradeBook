@@ -15,7 +15,7 @@ export default async function UserManagement() {
     query: '',
     userType: '',
     page: 1,
-    limit: 10
+    limit: 50
   });
 
   return (
@@ -35,7 +35,7 @@ export default async function UserManagement() {
               emptyTitle="No Users Found"
               emptyStateSubtext="Come back later"
               collectionType="All_Users"
-              limit={10}
+              limit={50}
               page={1}
               totalPages={2}
             />

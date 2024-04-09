@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs";
+import Link from "next/link";
 import { redirect } from "next/navigation";
  
 export default function InstructorDashboard() {
@@ -11,8 +13,27 @@ export default function InstructorDashboard() {
  
   return (
     <>
-      <h1>This is the instructor dashboard</h1>      
-      <p>This page is restricted to users with the 'instructor' role.</p>
+      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
+        <div className="wrapper gap-5 md:grid-cols-2 2xl:gap-0">
+          <div className="flex flex-col gap-8">
+            <h1 className="h1-bold">Instructor Dashboard</h1>
+            <div>
+              <p className="flex-center p-regular-20 md:p-regular-24">
+                Please choose from the following directory:
+              </p>
+            </div>
+            
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href="../../sections/instView">
+                  Manage My Class Sections
+                </Link>
+              </Button>
+            </div>
+            
+          </div>
+        </div>
+      </section>
     </>
   );
 }
