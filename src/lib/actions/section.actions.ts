@@ -82,8 +82,6 @@ export const getInstructorSections = async ({ instructorId, limit, page }: GetIn
       .skip(0)
       .limit(limit);
 
-    console.log(sectionsQuery);
-
     const sections = await populateSection(sectionsQuery);
 
     return { 

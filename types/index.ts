@@ -109,3 +109,18 @@ export type GetClassesBySubjectParams = {
   page: number
 }
 
+// =========== ASSIGNMENT PARAMS
+export type CreateAssignmentParams = {
+  assignment: {
+    sectionId: string;
+    name: string;
+    description: string;
+    totalPoints: string;
+    dueDate: string;
+  }
+}
+
+export type GetAssignmentsBySectionParams = {
+  sectionId: string
+}
+
