@@ -52,3 +52,31 @@ export const getGradeByAssignmentAndStudent = async (assignmentId: string, stude
     handleError(error);
   }
 }
+
+export const getGradesByStudent = async (studentId: string) => {
+  try {
+    await connectToDatabase();
+
+    const conditions = {
+      student: studentId
+    }
+
+    const grades = await Grade.find(conditions)
+      .limit(500)
+      .populate({
+        path: 'assignment',
+        model: Assignment,
+        select: '_id name description totalPoints dueDate'
+      })
+      .populate({
+        path: 'student',
+        model: User,
+        select: '_id firstName lastName'
+      });
+
+    return { data: JSON.parse(JSON.stringify(grades)) };
+  }
+  catch (error) {
+    handleError(error);
+  }
+}

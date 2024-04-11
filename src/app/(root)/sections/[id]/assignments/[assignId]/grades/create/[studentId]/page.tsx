@@ -1,5 +1,6 @@
 import CreateGradeForm from "@/components/shared/CreateGradeForm";
 import { getAssignmentById } from "@/lib/actions/assignment.actions";
+import { getGradesByStudent } from "@/lib/actions/grade.actions";
 import { getSectionById } from "@/lib/actions/section.actions";
 import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
@@ -24,6 +25,7 @@ const CreateGrade = async ({ params: { id, assignId, studentId } }: CreateGradeP
   const section = await getSectionById(id);
   const assignment = await getAssignmentById(assignId);
   const student = await getUserById(studentId);
+  const studentGrades = await getGradesByStudent(studentId);
 
   return (
     <>
@@ -51,7 +53,7 @@ const CreateGrade = async ({ params: { id, assignId, studentId } }: CreateGradeP
       </h4>
 
       <div className="wrapper my-8">
-        <CreateGradeForm section={section} assignment={assignment} student={student} />
+        <CreateGradeForm section={section} assignment={assignment} student={student} studentGrades={studentGrades?.data} />
       </div>
     </>
   )

@@ -10,20 +10,45 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { IUser } from "@/lib/mongo/models/user.model"
-import { createGrade } from "@/lib/actions/grade.actions"
+import { createGrade, getGradeByAssignmentAndStudent } from "@/lib/actions/grade.actions"
+import { IGrade } from "@/lib/mongo/models/grade.model"
 
 type CreateGradeFormProps = {
   section: ISection,
   assignment: IAssignment,
-  student: IUser
+  student: IUser,
+  studentGrades: IGrade[]
 }
 
-const CreateGradeForm = ({ section, assignment, student }: CreateGradeFormProps) => {
-  const initialValues = {
-    assignment: assignment._id,
-    student: student._id,
-    percentageScore: ''
-  }
+const CreateGradeForm = ({ section, assignment, student, studentGrades }: CreateGradeFormProps) => {
+  
+  const findMatch = () => {
+    var matchFound = false;
+    var percentageScoreFound = "";
+
+    studentGrades.map((grade) => {
+      if (grade.assignment._id === assignment._id) {
+        matchFound = true;
+        percentageScoreFound = grade.percentageScore;
+      }
+    });
+
+    return {matchFound, percentageScoreFound};
+  };
+
+  const findMatchArray = findMatch();
+
+  const initialValues = findMatchArray.matchFound ? 
+    {
+      assignment: assignment._id,
+      student: student._id,
+      pointsEarned: "Stored Percentage Score: " + findMatchArray.percentageScoreFound + "%"
+    } :
+    {
+      assignment: assignment._id,
+      student: student._id,
+      pointsEarned: ''
+    };
 
   // Define your form.
   const form = useForm<z.infer<typeof newGradeFormSchema>>({
@@ -85,7 +110,7 @@ const CreateGradeForm = ({ section, assignment, student }: CreateGradeFormProps)
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input placeholder="Points Earned" {...field} />
+                  <Input disabled={findMatchArray.matchFound} placeholder="Points Earned" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,10 +122,10 @@ const CreateGradeForm = ({ section, assignment, student }: CreateGradeFormProps)
         <Button 
           type="submit" 
           size="lg" 
-          disabled={form.formState.isSubmitting}
+          disabled={findMatchArray.matchFound}
           className="button"
         >
-          {form.formState.isSubmitting ? ('Submitting...') : ('Create Grade')}
+          {findMatchArray.matchFound ? ('Already Graded') : ('Create Grade')}
         </Button>
       </form>
     </Form>
