@@ -24,6 +24,23 @@ export const createAssignment = async ({ assignment }: CreateAssignmentParams) =
   }
 }
 
+export const getAssignmentById = async (assignId: string) => {
+  try {
+    await connectToDatabase();
+
+    const assignment = await Assignment.findById(assignId);
+
+    if (!assignment) {
+      throw new Error('Assignment not found');
+    }
+
+    return JSON.parse(JSON.stringify(assignment));
+  }
+  catch (error) {
+    handleError(error);
+  }
+}
+
 export const getAssignmentsBySection = async ({ sectionId }: GetAssignmentsBySectionParams) => {
   try {
     await connectToDatabase();

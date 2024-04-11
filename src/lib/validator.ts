@@ -36,3 +36,9 @@ export const newAssignmentFormSchema = z.object({
   totalPoints: z.string(),
   dueDate: z.string()
 })
+
+export const newGradeFormSchema = z.object({
+  assignment: z.string(),
+  student: z.string(),
+  pointsEarned: z.string()
+})

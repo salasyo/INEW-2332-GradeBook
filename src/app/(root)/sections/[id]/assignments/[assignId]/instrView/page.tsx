@@ -1,3 +1,7 @@
+import InstViewAssignModule from "@/components/shared/InstViewAssignModule";
+import { getAssignmentById } from "@/lib/actions/assignment.actions";
+import { getEnrollmentsBySection } from "@/lib/actions/enrollment.actions";
+import { getSectionById } from "@/lib/actions/section.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
@@ -16,9 +20,9 @@ const InstViewAssignment = async ({ params: { id, assignId } }: InstViewAssignme
     redirect("/");
   }
 
-  //const assignment = await getSectionById(id);
-
-  console.log("sectionId = " + id + " assignmentId = " + assignId);
+  const section = await getSectionById(id);
+  const assignment = await getAssignmentById(assignId);
+  const enrollments = await getEnrollmentsBySection(id);
 
   return (
     <>
@@ -27,10 +31,8 @@ const InstViewAssignment = async ({ params: { id, assignId } }: InstViewAssignme
       </section>
 
       <div className="wrapper my-8">
-        View Assignment
+        <InstViewAssignModule section={section} enrollments={enrollments?.data} assignment={assignment} />
       </div>
-
-      
     </>
   )
 }

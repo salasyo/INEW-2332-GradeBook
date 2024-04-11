@@ -67,3 +67,43 @@ export const getEnrollmentsByUser = async ({ userId, limit = 10, page = 1 }: Get
     handleError(error)
   }
 }
+
+export const getEnrollmentsBySection = async (sectionId: string) => {
+  try {
+    await connectToDatabase();
+
+    const conditions = { section: sectionId };
+
+    const enrollments = await Enrollment.distinct('student._id')
+      .find(conditions)
+      .limit(30)
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'class',
+          model: Class,
+          select: '_id subject number name'
+        }
+      })
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'instructor',
+          model: User,
+          select: '_id firstName lastName'
+        }
+      })
+      .populate({
+        path: 'student',
+        model: User,
+        select: '_id firstName lastName'
+      })
+
+    return { data: JSON.parse(JSON.stringify(enrollments)) };
+  }
+  catch (error) {
+    handleError(error);
+  }
+}

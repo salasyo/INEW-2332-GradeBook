@@ -39,6 +39,10 @@ const InstViewSection = async ({ params: { id } }: InstViewSectionProps) => {
         />
       </div>
 
+      <h4 className="py-5 p-bold-24 text-center">
+        Assignment List  
+      </h4>
+
       <div>
         <AssignmentList  
           data={assignments?.data} 
@@ -47,13 +51,14 @@ const InstViewSection = async ({ params: { id } }: InstViewSectionProps) => {
         />
       </div>
 
-      <div className="flex flex-col flex-center gap-8">
+      <div className="flex flex-col flex-center gap-8 py-5">
         <Button size="lg" asChild className="button w-full sm:w-fit">
           <Link href={`/sections/${section._id}/assignments/create`}>
             Create New Assignment
           </Link>
         </Button>
       </div>
+
     </>
   )
 }
