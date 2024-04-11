@@ -15,8 +15,7 @@ export interface IEnrollment extends Document {
     meetingDays: string,
     startTime: string,
     endTime: string,
-    startDate: Date,
-    endDate: Date,
+    semester: string,
     roomNumber: string,
     instructor: {
       _id: string,
