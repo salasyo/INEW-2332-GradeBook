@@ -11,7 +11,7 @@ const CurrentSemesterGPAView = ({
   grades
 }: CurrentSemesterGPAViewProps) => {
 
-  let totalPercScoresForAllEnrollmentsArray: string | number[] = [];
+  let totalPercScoresForAllEnrollmentsArray: number[] = [];
 
   enrollments.map((enrollment) => {
     

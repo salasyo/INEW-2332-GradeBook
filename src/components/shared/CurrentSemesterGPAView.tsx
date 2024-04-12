@@ -38,7 +38,7 @@ const CurrentSemesterGPAView = ({
   const currentEnrollments = filterEnrollments(enrollments);
   const currentGrades = filterGrades(grades);
 
-  let totalPercScoresForCurrentEnrollmentsArray: string | number[] = [];
+  let totalPercScoresForCurrentEnrollmentsArray: number[] = [];
 
   currentEnrollments.map((enrollment) => {
     
