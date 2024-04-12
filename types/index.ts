@@ -128,5 +128,6 @@ export type GetAssignmentsBySectionParams = {
 export type CreateGradeParams = {
   assignmentId: string;
   studentId: string;
+  sectionId: string;
   percentageScore: string;
 }

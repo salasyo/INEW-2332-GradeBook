@@ -3,7 +3,9 @@
 import { CreateGradeParams } from "../../../types";
 import { connectToDatabase } from "../mongo";
 import Assignment from "../mongo/models/assignment.model";
+import Class from "../mongo/models/class.model";
 import Grade from "../mongo/models/grade.model";
+import Section from "../mongo/models/section.model";
 import User from "../mongo/models/user.model";
 import { handleError } from "../utils";
 
@@ -45,6 +47,24 @@ export const getGradeByAssignmentAndStudent = async (assignmentId: string, stude
         model: User,
         select: '_id firstName lastName'
       })
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'class',
+          model: Class,
+          select: '_id subject number name'
+        }
+      })
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'instructor',
+          model: User,
+          select: '_id firstName lastName'
+        }
+      })
 
     return { data: JSON.parse(JSON.stringify(grade)) };
   }
@@ -72,7 +92,25 @@ export const getGradesByStudent = async (studentId: string) => {
         path: 'student',
         model: User,
         select: '_id firstName lastName'
-      });
+      })
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'class',
+          model: Class,
+          select: '_id subject number name'
+        }
+      })
+      .populate({
+        path: 'section',
+        model: Section,
+        populate: {
+          path: 'instructor',
+          model: User,
+          select: '_id firstName lastName'
+        }
+      })
 
     return { data: JSON.parse(JSON.stringify(grades)) };
   }

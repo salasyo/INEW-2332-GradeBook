@@ -40,6 +40,14 @@ export default function StudentDashboard() {
                 </Link>
               </Button>
             </div>
+
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href={`/student/${studentId}/profile`}>
+                  View Your Academic Profile
+                </Link>
+              </Button>
+            </div>
             
           </div>
         </div>

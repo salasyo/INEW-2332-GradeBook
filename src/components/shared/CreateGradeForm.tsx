@@ -42,11 +42,13 @@ const CreateGradeForm = ({ section, assignment, student, studentGrades }: Create
     {
       assignment: assignment._id,
       student: student._id,
+      section: section._id,
       pointsEarned: "Stored Percentage Score: " + findMatchArray.percentageScoreFound + "%"
     } :
     {
       assignment: assignment._id,
       student: student._id,
+      section: section._id,
       pointsEarned: ''
     };
 
@@ -65,6 +67,7 @@ const CreateGradeForm = ({ section, assignment, student, studentGrades }: Create
       const gradeObject = {
         assignmentId: values.assignment,
         studentId: values.student,
+        sectionId: values.section,
         percentageScore: calculatedPercent
       }
 
@@ -98,6 +101,19 @@ const CreateGradeForm = ({ section, assignment, student, studentGrades }: Create
               <FormItem className="w-full">
                 <FormControl>
                   <Input disabled placeholder="Student" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="section"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input disabled placeholder="Section" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
