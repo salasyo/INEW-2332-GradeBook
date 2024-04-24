@@ -24,6 +24,19 @@ export interface IGrade extends Document {
     dueDate: string
   };
 
+  section: {
+    _id: string;
+    sectionNumber: string;
+    subjectAbbr: string;
+    class: { _id: string, subject: string, number: string, name: string,  description: string } ;
+    meetingDays: string;
+    startTime: string;
+    endTime: string;
+    semester: string;
+    roomNumber: string;
+    instructor: { _id: string, firstName: string, lastName: string }
+  }
+
   student: {
     _id: string, firstName: string, lastName: string
   };
@@ -34,6 +47,7 @@ export interface IGrade extends Document {
 const GradeSchema = new Schema({
   assignment: { type: Schema.Types.ObjectId, ref: 'Assignment' },
   student: { type: Schema.Types.ObjectId, ref: 'User' },
+  section: { type: Schema.Types.ObjectId, ref: 'Section' },
   percentageScore: { type: String, required: true }
 })
 

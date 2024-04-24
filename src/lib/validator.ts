@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { Status } from "../../types"
 
 export const sectionFormSchema = z.object({
   sectionNumber: z.string(),
@@ -36,3 +37,21 @@ export const newAssignmentFormSchema = z.object({
   totalPoints: z.string(),
   dueDate: z.string()
 })
+
+export const newGradeFormSchema = z.object({
+  assignment: z.string(),
+  student: z.string(),
+  section: z.string(),
+  pointsEarned: z.string()
+})
+
+export const newAttendanceRecordSchema = z.object({
+  date: z.date(),
+  className: z.string(),
+  classAbbr: z.string(),
+  classNumber: z.string(),
+  sectionNumber: z.string(),
+  records: z.array(z.object({
+    status: z.enum([Status.Present, Status.Absent, Status.Tardy, Status.Excused]),
+  })),
+});

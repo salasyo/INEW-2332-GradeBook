@@ -10,6 +10,8 @@ export default function StudentDashboard() {
   if (sessionClaims?.metadata.role !== "student") {
     redirect("/");
   }
+
+  const studentId = sessionClaims.metadata.userId;
  
   return (
     <>
@@ -27,6 +29,22 @@ export default function StudentDashboard() {
               <Button size="lg" asChild className="button w-full sm:w-fit">
                 <Link href="../../sections/enroll">
                   Enroll in Class Sections
+                </Link>
+              </Button>
+            </div>
+
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href={`/student/${studentId}/enrollments`}>
+                  View Your Enrollments
+                </Link>
+              </Button>
+            </div>
+
+            <div className="flex flex-col flex-center gap-8">
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href={`/student/${studentId}/profile`}>
+                  View Your Academic Profile
                 </Link>
               </Button>
             </div>

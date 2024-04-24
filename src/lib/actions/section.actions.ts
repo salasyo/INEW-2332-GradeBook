@@ -92,5 +92,3 @@ export const getInstructorSections = async ({ instructorId, limit, page }: GetIn
     handleError(error);
   }
 }
-
-

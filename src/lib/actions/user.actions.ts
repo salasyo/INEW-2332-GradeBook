@@ -116,6 +116,16 @@ export async function getUserById(userId: string) {
   }
 }
 
+export async function getStudentUsersBySection(sectionId: string) {
+  try {
+    await connectToDatabase();
+
+  }
+  catch (error) {
+    handleError(error);
+  }
+}
+
 export async function deleteUser(clerkId: string) {
   try {
     await connectToDatabase()
