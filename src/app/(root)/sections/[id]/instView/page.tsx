@@ -28,7 +28,7 @@ const InstViewSection = async ({ params: { id } }: InstViewSectionProps) => {
 
   return (
     <>
-      <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
+      <section className="bg-primary-50 bg-cover bg-center py-5 md:py-10">
         <h3 className="wrapper h3-bold text-center sm:text-left">Class Section - Instructor View</h3>
       </section>
 
@@ -55,6 +55,20 @@ const InstViewSection = async ({ params: { id } }: InstViewSectionProps) => {
         <Button size="lg" asChild className="button w-full sm:w-fit">
           <Link href={`/sections/${section._id}/assignments/create`}>
             Create New Assignment
+          </Link>
+        </Button>
+      </div>
+
+      <div className="py-5"></div>
+
+      <h4 className="p-bold-24 text-center">
+        Attendance 
+      </h4>
+
+      <div className="flex flex-col flex-center gap-8 py-5">
+        <Button size="lg" asChild className="button w-full sm:w-fit">
+          <Link href={`/sections/${section._id}/attendance/create`}>
+            Take Attendance
           </Link>
         </Button>
       </div>

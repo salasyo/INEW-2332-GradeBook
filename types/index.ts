@@ -131,3 +131,37 @@ export type CreateGradeParams = {
   sectionId: string;
   percentageScore: string;
 }
+
+// =========== ATTENDANCE PARAMS
+export enum Status {
+  Present = "Present",
+  Absent = "Absent",
+  Tardy = "Tardy",
+  Excused = "Excused"
+}
+
+export type StudentObject = {
+  studentId: string,
+  firstName: string,
+  lastName: string
+}
+
+export type Record = {
+  studentId: string;
+  firstName: string;
+  lastName: string;
+  status: string;
+}
+
+export type CreateAttendanceRecordParams = {
+  attendanceRecord: {
+    date: Date;
+    sectionId: string;
+    className: string;
+    classAbbr: string;
+    classNumber: string;
+    sectionNumber: string;
+    records: Record[];
+  }
+}
+
