@@ -2,7 +2,7 @@ import { ISection } from "@/lib/mongo/models/section.model"
 import Link from "next/link"
 
 type InstCollectionProps = {
-  data: ISection[],
+  sections: ISection[],
   emptyTitle: string,
   emptyStateSubtext: string,
   limit: number,
@@ -12,7 +12,7 @@ type InstCollectionProps = {
 }
 
 const InstCollection = ({
-  data,
+  sections,
   emptyTitle,
   emptyStateSubtext,
   limit,
@@ -22,11 +22,11 @@ const InstCollection = ({
 }: InstCollectionProps) => {
   return (
     <>
-      {data.length > 0 ? (
+      {sections.length > 0 ? (
         <div className="flex flex-col items-center gap-10">
 
           <ul className="grid w-full grid-cols-1 gap-5 xl:gap-10">
-            {data.map((section) => {
+            {sections.map((section) => {
               return (
                 <li key={section._id} className="flex justify-center">
                   <div className="group relative flex w-full max-w-[500px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg p-5">

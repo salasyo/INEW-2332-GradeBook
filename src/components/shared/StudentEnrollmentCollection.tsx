@@ -1,51 +1,54 @@
 "use client"
 
 import { IEnrollment } from "@/lib/mongo/models/enrollment.model"
+import { ISection } from "@/lib/mongo/models/section.model"
 import Link from "next/link"
 
 type StudentEnrollmentCollectionProps = {
-  enrollments: IEnrollment[],
+  sections: ISection[],
+  studentId: string,
   emptyTitle: string,
   emptyStateSubtext: string
 }
 
 const StudentEnrollmentCollection = ({
-  enrollments,
+  sections,
+  studentId,
   emptyTitle,
   emptyStateSubtext,
 }: StudentEnrollmentCollectionProps) => {
   return (
     <>
-      {enrollments.length > 0 ? (
+      {sections.length > 0 ? (
         <div className="flex flex-col items-center gap-10">
           <ul className="grid w-full grid-cols-1 gap-5 xl:gap-10">
-            {enrollments.map((enrollment) => {
+            {sections.map((section) => {
               return (
-                <li key={enrollment._id} className="flex justify-center">
+                <li key={section._id} className="flex justify-center">
                   <div className="group relative flex w-full max-w-[500px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg p-5">
                     <Link
-                      href={`/sections/${enrollment.section._id}/enrolledView/${enrollment.student._id}`}
+                      href={`/sections/${section._id}/enrolledView/${studentId}`}
                     >
                       <p className="p-semibold-18">
-                        {enrollment.section.class.subject} {enrollment.section.class.number}: {enrollment.section.class.name}
+                        {section.class.subject} {section.class.number}: {section.class.name}
                       </p>
                       <p>
-                        Section Number: {enrollment.section.sectionNumber}
+                        Section Number: {section.sectionNumber}
                       </p>
                       <p>
-                        Meeting Days: {enrollment.section.meetingDays}
+                        Meeting Days: {section.meetingDays}
                       </p>
                       <p>
-                        Meeting Time: {enrollment.section.startTime} - {enrollment.section.endTime}
+                        Meeting Time: {section.startTime} - {section.endTime}
                       </p>
                       <p>
-                        Semester: {enrollment.section.semester}
+                        Semester: {section.semester}
                       </p>
                       <p>
-                        Room Number: {enrollment.section.roomNumber}
+                        Room Number: {section.roomNumber}
                       </p>
                       <p>
-                        Instructor: {enrollment.section.instructor.lastName}, {enrollment.section.instructor.firstName}
+                        Instructor: {section.instructor.lastName}, {section.instructor.firstName}
                       </p>
                     </Link>
                   </div>
