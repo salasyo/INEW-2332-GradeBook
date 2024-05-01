@@ -1,6 +1,6 @@
 "use server"
 
-import { CreateSectionParams, GetAllSectionsParams, GetInstructorSectionsParams } from "../../../types"
+import { CreateSectionParams, GetAllSectionsParams, GetInstructorSectionsParams, GetSectionsBySemesterParams } from "../../../types"
 import { connectToDatabase } from "../mongo";
 import Section from "../mongo/models/section.model";
 import { handleError } from "../utils"
@@ -88,6 +88,28 @@ export const getInstructorSections = async ({ instructorId, limit, page }: GetIn
       data: JSON.parse(JSON.stringify(sections))
     };
 
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+export const getSectionsBySemester = async ({ semester }: GetSectionsBySemesterParams) => {
+  try {
+
+    await connectToDatabase();
+
+    const conditions = { semester: semester };
+
+    const sectionsQuery = Section.find(conditions)
+      .sort({ sectionNumber: 'asc' })
+      .skip(0)
+      .limit(100);
+
+    const sections = await populateSection(sectionsQuery);
+
+    return {
+      data: JSON.parse(JSON.stringify(sections))
+    };
   } catch (error) {
     handleError(error);
   }

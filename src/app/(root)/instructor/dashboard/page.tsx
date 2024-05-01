@@ -13,7 +13,7 @@ export default function InstructorDashboard() {
  
   return (
     <>
-      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
+      <section className="bg-primary-50 bg-contain py-5 md:py-10">
         <div className="wrapper gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col gap-8">
             <h1 className="h1-bold">Instructor Dashboard</h1>

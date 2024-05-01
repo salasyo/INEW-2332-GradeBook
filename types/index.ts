@@ -90,6 +90,10 @@ export type GetRelatedSectionsByClassParams = {
   page: number | string
 }
 
+export type GetSectionsBySemesterParams = {
+  semester: string
+}
+
 // =========== ENROLLMENT PARAMS
 export type CreateEnrollmentParams = {
   sectionId: string,
